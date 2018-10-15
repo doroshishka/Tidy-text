@@ -99,10 +99,11 @@ ggraph(bigram_graph, layout = "fr") +
                  arrow = a, end_cap = circle(.1, 'inches')) +
   geom_node_point(color = "red") +
   geom_node_text(aes(label = name), vjust = 1, hjust = 1) # +
-#  theme_void()
-#a <- grid::arrow adds arrows to provide directionality (e.g., "trade deals" not "deals trade")
-#edge_alpha = n means bigrams that are more rare have transparant arrows (n >= 3 has dark arrows)
+
 #theme_void() is a common theme for plotting networks
+theme_void()
+a <- grid::arrow adds arrows to provide directionality (e.g., "trade deals" not "deals trade")
+edge_alpha = n means bigrams that are more rare have transparant arrows (n >= 3 has dark arrows)
 
 # Ch 2 - Sentiment Analysis
 Associated Chapter: https://www.tidytextmining.com/sentiment.html
