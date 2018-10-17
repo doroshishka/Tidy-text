@@ -1,5 +1,6 @@
 # Tidy-text
-## Tidy text workshop at the Computational Methods group
+
+Tidy text workshop at the Computational Methods group
 
 Tidy Text Mining Textbook: https://www.tidytextmining.com/
 ```
