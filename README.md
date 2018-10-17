@@ -1,8 +1,8 @@
 # Tidy-text
-Tidy text workshop
+## Tidy text workshop at the Computational Methods group
 
 Tidy Text Mining Textbook: https://www.tidytextmining.com/
-
+```
 library(dplyr)
 library(stringr)
 library(tidytext)
@@ -18,10 +18,10 @@ getwd()
 setwd("directory")
 
 sotu <- read.delim("SOTU.txt", header = FALSE, sep = "\n") #imports speech
-
-# Ch 1 - The Tidy Text Format 
+```
+###### Ch 1 - The Tidy Text Format 
 Associated Chapter: https://www.tidytextmining.com/tidytext.html#the-unnest_tokens-function
-
+```
 tidy_sotu <- data_frame(text = as.character(sotu[[1]])) %>%
   unnest_tokens(word, text)
 
@@ -46,10 +46,11 @@ tidy_sotu %>% #wordcloud
   anti_join(stop_words) %>%
   count(word) %>%
   with(wordcloud(word, n, max.words =80))
+```
 
-# Ch 4 - n-grams 
+###### Ch 4 - n-grams 
 Associated Chapter: https://www.tidytextmining.com/ngrams.html
-
+```
 sotu_bigrams_all <- sotu %>%
   unnest_tokens(bigram, V1, token = "ngrams", n = 2)
 
@@ -74,7 +75,6 @@ bigrams_filtered %>% #most common words mentioned with "people"
   filter(word2 == "people") %>%
   count(word1, sort = TRUE)
 
-#Bigram network
 bigrams_count <- bigrams_filtered %>%
   count(word1, word2, sort = TRUE)
 bigrams_count
@@ -104,10 +104,10 @@ ggraph(bigram_graph, layout = "fr") +
 theme_void()
 a <- grid::arrow adds arrows to provide directionality (e.g., "trade deals" not "deals trade")
 edge_alpha = n means bigrams that are more rare have transparant arrows (n >= 3 has dark arrows)
-
-# Ch 2 - Sentiment Analysis
+```
+###### Ch 2 - Sentiment Analysis
 Associated Chapter: https://www.tidytextmining.com/sentiment.html
-
+```
 get_sentiments("afinn") #-5 to +5 sentiment
 get_sentiments("bing") #positive/negative binary
 get_sentiments("nrc") #yes/no binaries for 9 categories
@@ -151,10 +151,10 @@ tidy_sotu %>%
   acast(word ~ sentiment, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("red", "green"),
                    max.words = 200)
-
-# Ch 3 - Term Frequencies
+```
+###### Ch 3 - Term Frequencies
 Associated Chapter: https://www.tidytextmining.com/tfidf.html
-
+```
 sotu_words <- tidy_sotu %>%
   count(word, sort = TRUE) %>%
   ungroup()
@@ -178,3 +178,4 @@ freq %>%
   geom_line(size = 1.1, alpha = 0.8, show.legend = FALSE) + 
   scale_x_log10() +
   scale_y_log10()
+```
